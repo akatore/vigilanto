@@ -2,7 +2,7 @@ name: AutoCodeGen
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, reopend, labeled]
 
 jobs:
   generate_code:
