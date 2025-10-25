@@ -1,0 +1,22 @@
+name: AutoCodeGen
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  generate_code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: AutoCoder Composite Action
+        uses: akatore/Autocoder-HS@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          LABEL: 'autocoder-bot'
+          SCRIPT_PATH: './scripts/script.sh'
